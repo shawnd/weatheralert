@@ -71,13 +71,13 @@ def getTsunamiData():
 
 # loop #get info every x minutes per data source
 
-dateLastRead = ''
-while True:
+def runParse():
+    while True:
 
-    # thread.start_new_thread(getHurricaneData, ())
+        # thread.start_new_thread(getHurricaneData, ())
 
-    thread.start_new_thread(getEarthquakeData, ())
+        thread.start_new_thread(getEarthquakeData, ())
 
-    # thread.start_new_thread(getTsunamiData, ())
+        # thread.start_new_thread(getTsunamiData, ())
 
-    time.sleep(60)
+        time.sleep(60)

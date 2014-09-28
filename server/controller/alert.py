@@ -23,8 +23,8 @@ EARTHQUAKE_MAGNITUDE_THRESHOLD = 1
 def analyzeEarthquakeData():
     print 'Analyze quake'
     sql_analyze = "SELECT DISTINCT * FROM disasters ORDER BY date DESC"
-    cur.execute(sql_analyze)
     try:
+        cur.execute(sql_analyze)
         row = cur.fetchone()
         while row != []:
             print row[0]
@@ -36,13 +36,13 @@ def analyzeEarthquakeData():
 
 # loop #get info every x minutes per data source
 
-dateLastRead = ''
-while True:
+def runAlerts():
+    while True:
 
-    # thread.start_new_thread(getHurricaneData, ())
+        # thread.start_new_thread(getHurricaneData, ())
 
-    thread.start_new_thread(analyzeEarthquakeData, ())
+        thread.start_new_thread(analyzeEarthquakeData, ())
 
-    # thread.start_new_thread(getTsunamiData, ())
+        # thread.start_new_thread(getTsunamiData, ())
 
-    time.sleep(60)
+        time.sleep(60)
