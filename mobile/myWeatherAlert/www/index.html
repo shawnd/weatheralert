@@ -12,7 +12,7 @@
 
         <script src="lib/onsen/js/angular/angular.js"></script>    
         <script src="lib/onsen/js/onsenui.js"></script>
-        
+
         <script src="js/jquery-2.1.1.min.js"></script>
         <script src="js/weatheralerts.js"></script>
 
@@ -39,12 +39,20 @@
                 });
             }
             google.maps.event.addDomListener(window, 'load', initialize);
-            
+
             $(document).ready(function() {
-                var fullHeight = $(window).height();
-                var mapHeight = fullHeight - 44;
-                $("#map-canvas").height(mapHeight);
-                $("#map-canvas").width("100%");
+                function adjustMapHeight() {
+                    var fullHeight = $(window).height();
+                    var mapHeight = fullHeight - 44;
+                    $("#map-canvas").height(mapHeight);
+                    $("#map-canvas").width("100%");
+                }
+                adjustMapHeight();
+                $(document.body).on('pageinit', '#map-page-real', function() {
+                    console.log("POWERS");
+                    adjustMapHeight();
+                    initialize();
+                });
             });
         </script>
 
@@ -111,7 +119,7 @@
 
         <ons-sliding-menu
                           menu-page="menu.html" main-page="map-page" side="left"
-                          var="menu" type="reveal" max-slide-distance="260px" swipable="true">
+                          var="menu" type="reveal" max-slide-distance="260px" swipable="true" swipe-target-width="50px">
         </ons-sliding-menu>
 
         <ons-template id="menu.html">
@@ -133,7 +141,7 @@
         </ons-template>
 
         <ons-template id="map-page">
-            <ons-page>
+            <ons-page id="map-page-real">
                 <ons-toolbar>
                     <div class="left">
                         <ons-toolbar-button ng-click="menu.toggle()">
@@ -156,7 +164,15 @@
                     </div>
                     <div class="center">Notifications</div>
                 </ons-toolbar>
-                <p>Page</p>
+
+                <ons-list style="margin-top: 10px">
+                    <ons-list-item class="item" ng-repeat="i in [1,2,3]">
+                        <header>
+                            <span class="item-title">Lorem ipsum dolor sit amet</span>
+                        </header>
+                        <p class="item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </ons-list-item>
+                </ons-list>
 
             </ons-page>
         </ons-template>
