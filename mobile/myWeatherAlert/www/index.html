@@ -26,35 +26,7 @@
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqLMy12f5ShSG5z-qS2ZBF2DS-158d0hM">
         </script>
 
-        <script>
-            function initialize() {
-                var mapOptions = {
-                    center: { lat: -34.397, lng: 150.644},
-                    zoom: 8
-                };
-                var map = new google.maps.Map(document.getElementById('map-canvas'),
-                                              mapOptions);
-                google.maps.event.addListener(map, 'idle', function() {
-                    console.log("MAP READY");
-                });
-            }
-            google.maps.event.addDomListener(window, 'load', initialize);
-
-            $(document).ready(function() {
-                function adjustMapHeight() {
-                    var fullHeight = $(window).height();
-                    var mapHeight = fullHeight - 44;
-                    $("#map-canvas").height(mapHeight);
-                    $("#map-canvas").width("100%");
-                }
-                adjustMapHeight();
-                $(document.body).on('pageinit', '#map-page-real', function() {
-                    console.log("POWERS");
-                    adjustMapHeight();
-                    initialize();
-                });
-            });
-        </script>
+        <script src="js/weatheralerts.js"></script>
 
         <style>
             .page--menu-page__content {
